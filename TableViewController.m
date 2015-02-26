@@ -20,12 +20,16 @@
     //create the feed array empty
     feeds = [[NSMutableArray alloc] init];
     
-    //setup and launch the parser
+    //add the notification used to add new elements to the table while loading
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(addItem:)
+                                                 name:@"downloadedItemNotify" object:nil];
+    
+    //start to get the rssItems
     NSURL *url = [NSURL URLWithString:@"http://newsrss.bbc.co.uk/rss/sportonline_world_edition/front_page/rss.xml"];
-    parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
-    [parser setDelegate:self];
-    [parser setShouldResolveExternalEntities:NO];
-    [parser parse];
+    rssDownloader=[[RSSDownloader alloc] init];
+    [rssDownloader setDelegate:self];
+    [rssDownloader getRssFromUrl:url];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -33,7 +37,19 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
+- (void)addItemToList:(NSRssItem *)loadedItem{
+    [self.tableView beginUpdates];
+    //add element to the table
+    NSInteger section = 0;
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[feeds count] inSection:section];
+    [feeds addObject:loadedItem];
+    
+    [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    
+    [self.tableView endUpdates];
+}
+
+#pragma mark - UITableView data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
@@ -48,48 +64,37 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    cell.textLabel.text = [[feeds objectAtIndex:indexPath.row] objectForKey:@"title"];
+    
+    NSRssItem *currentItem = [feeds objectAtIndex:indexPath.row];
+    cell.textLabel.text = currentItem.titleText;
+    
     return cell;
 }
 
-#pragma mark - Parser
-
--(void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict{
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
-    //parse the element
-    element = elementName;
-    if ([element isEqualToString:@"item"]){
-        rssItem = [[NSMutableDictionary alloc] init];
-        rssTitle = [[NSMutableString alloc] init];
-        rssLink = [[NSMutableString alloc] init];
-    }
-    
-}
-
--(void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName{
-    
-    //save the parse element
-    if([elementName isEqualToString:@"item"]){
-        [rssItem setObject:rssTitle forKey:@"title"];
-        [rssItem setObject:rssLink forKey:@"link"];
-        [feeds addObject:[rssItem copy]];
-    }
-    
-}
-
--(void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string{
-    
-    if([element isEqualToString:@"title"]){
-        [rssTitle appendString:string];
-    }
-    else if([element isEqualToString:@"link"]){
-        [rssLink appendString:string];
-    }
+    if([[segue identifier] isEqualToString:@"showDetails"]){
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         
+        NSRssItem *selectedItem=[[NSRssItem alloc] init];
+        selectedItem=[feeds objectAtIndex:indexPath.row];
+        
+        [[segue destinationViewController] showRssItem:selectedItem];
+    }
 }
 
--(void)parserDidEndDocument:(NSXMLParser *)parser{
-    [self.tableView reloadData];
+#pragma mark - RSSDownloaded delegate
+
+-(void)rssDownloaderGotItem:(NSRssItem *)loadedItem{
+    [self addItemToList:loadedItem];
+}
+
+#pragma mark - RSSDownloaded notification
+
+- (void)addItem:(NSNotification *)notif {
+    
+    assert([NSThread isMainThread]);
+    [self addItemToList:[[notif userInfo] valueForKey:@"rssItemResultsKey"]];
 }
 
 @end

@@ -7,15 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NSRssItem.h"
+#import "DetailViewController.h"
+#import "RSSDownloader.h"
 
-@interface TableViewController : UITableViewController <NSXMLParserDelegate>{
-    NSXMLParser *parser;
-    NSMutableArray *feeds;
-    NSMutableDictionary *rssItem;
-    NSMutableString *rssTitle;
-    NSMutableString *rssLink;
-    NSString *element;
+@interface TableViewController : UITableViewController <RSSDownloaderDelegate>{
+    RSSDownloader *rssDownloader;
     
+    NSMutableArray *feeds;
 }
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;

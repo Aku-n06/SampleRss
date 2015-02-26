@@ -15,6 +15,10 @@
 		80A6D4981A9F2DAA00591564 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80A6D4961A9F2DAA00591564 /* LaunchScreen.xib */; };
 		80A6D4A41A9F2DAA00591564 /* SampleRssTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A6D4A31A9F2DAA00591564 /* SampleRssTests.m */; };
 		80A6D4AF1A9F331300591564 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A6D4AE1A9F331300591564 /* TableViewController.m */; };
+		80A6D4B81A9F3DC400591564 /* DetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A6D4B71A9F3DC400591564 /* DetailView.m */; };
+		80A6D4BD1A9F44E900591564 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A6D4BB1A9F44E900591564 /* DetailViewController.m */; };
+		80A6D4C01A9F46E700591564 /* NSRssItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A6D4BF1A9F46E700591564 /* NSRssItem.m */; };
+		80A6D4C61A9F678100591564 /* RSSDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A6D4C51A9F678100591564 /* RSSDownloader.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +46,14 @@
 		80A6D4A31A9F2DAA00591564 /* SampleRssTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SampleRssTests.m; sourceTree = "<group>"; };
 		80A6D4AD1A9F331300591564 /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TableViewController.h; path = ../TableViewController.h; sourceTree = "<group>"; };
 		80A6D4AE1A9F331300591564 /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TableViewController.m; path = ../TableViewController.m; sourceTree = "<group>"; };
+		80A6D4B61A9F3DC400591564 /* DetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailView.h; sourceTree = "<group>"; };
+		80A6D4B71A9F3DC400591564 /* DetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailView.m; sourceTree = "<group>"; };
+		80A6D4BB1A9F44E900591564 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		80A6D4BC1A9F44E900591564 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		80A6D4BE1A9F46E700591564 /* NSRssItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSRssItem.h; path = SampleRss/NSRssItem.h; sourceTree = "<group>"; };
+		80A6D4BF1A9F46E700591564 /* NSRssItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSRssItem.m; path = SampleRss/NSRssItem.m; sourceTree = "<group>"; };
+		80A6D4C41A9F678100591564 /* RSSDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RSSDownloader.h; path = SampleRss/RSSDownloader.h; sourceTree = "<group>"; };
+		80A6D4C51A9F678100591564 /* RSSDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RSSDownloader.m; path = SampleRss/RSSDownloader.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,11 +95,11 @@
 		80A6D4831A9F2DAA00591564 /* SampleRss */ = {
 			isa = PBXGroup;
 			children = (
+				80A6D4BA1A9F3FC400591564 /* View */,
+				80A6D4B91A9F3FB400591564 /* Controller */,
+				80A6D4C71A9F678500591564 /* Model */,
 				80A6D4881A9F2DAA00591564 /* AppDelegate.h */,
 				80A6D4891A9F2DAA00591564 /* AppDelegate.m */,
-				80A6D4AD1A9F331300591564 /* TableViewController.h */,
-				80A6D4AE1A9F331300591564 /* TableViewController.m */,
-				80A6D4911A9F2DAA00591564 /* Main.storyboard */,
 				80A6D4941A9F2DAA00591564 /* Images.xcassets */,
 				80A6D4961A9F2DAA00591564 /* LaunchScreen.xib */,
 				80A6D48B1A9F2DAA00591564 /* SampleRss.xcdatamodeld */,
@@ -120,6 +132,39 @@
 				80A6D4A21A9F2DAA00591564 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		80A6D4B91A9F3FB400591564 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				80A6D4AD1A9F331300591564 /* TableViewController.h */,
+				80A6D4AE1A9F331300591564 /* TableViewController.m */,
+				80A6D4BC1A9F44E900591564 /* DetailViewController.h */,
+				80A6D4BB1A9F44E900591564 /* DetailViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		80A6D4BA1A9F3FC400591564 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				80A6D4B61A9F3DC400591564 /* DetailView.h */,
+				80A6D4B71A9F3DC400591564 /* DetailView.m */,
+				80A6D4911A9F2DAA00591564 /* Main.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		80A6D4C71A9F678500591564 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				80A6D4C41A9F678100591564 /* RSSDownloader.h */,
+				80A6D4C51A9F678100591564 /* RSSDownloader.m */,
+				80A6D4BE1A9F46E700591564 /* NSRssItem.h */,
+				80A6D4BF1A9F46E700591564 /* NSRssItem.m */,
+			);
+			name = Model;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -223,9 +268,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				80A6D48A1A9F2DAA00591564 /* AppDelegate.m in Sources */,
+				80A6D4C61A9F678100591564 /* RSSDownloader.m in Sources */,
 				80A6D4871A9F2DAA00591564 /* main.m in Sources */,
 				80A6D48D1A9F2DAA00591564 /* SampleRss.xcdatamodeld in Sources */,
 				80A6D4AF1A9F331300591564 /* TableViewController.m in Sources */,
+				80A6D4B81A9F3DC400591564 /* DetailView.m in Sources */,
+				80A6D4C01A9F46E700591564 /* NSRssItem.m in Sources */,
+				80A6D4BD1A9F44E900591564 /* DetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
