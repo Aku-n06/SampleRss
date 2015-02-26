@@ -10,11 +10,11 @@
 		80A6D4871A9F2DAA00591564 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A6D4861A9F2DAA00591564 /* main.m */; };
 		80A6D48A1A9F2DAA00591564 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A6D4891A9F2DAA00591564 /* AppDelegate.m */; };
 		80A6D48D1A9F2DAA00591564 /* SampleRss.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 80A6D48B1A9F2DAA00591564 /* SampleRss.xcdatamodeld */; };
-		80A6D4901A9F2DAA00591564 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A6D48F1A9F2DAA00591564 /* ViewController.m */; };
 		80A6D4931A9F2DAA00591564 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80A6D4911A9F2DAA00591564 /* Main.storyboard */; };
 		80A6D4951A9F2DAA00591564 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80A6D4941A9F2DAA00591564 /* Images.xcassets */; };
 		80A6D4981A9F2DAA00591564 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80A6D4961A9F2DAA00591564 /* LaunchScreen.xib */; };
 		80A6D4A41A9F2DAA00591564 /* SampleRssTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A6D4A31A9F2DAA00591564 /* SampleRssTests.m */; };
+		80A6D4AF1A9F331300591564 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A6D4AE1A9F331300591564 /* TableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,14 +34,14 @@
 		80A6D4881A9F2DAA00591564 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		80A6D4891A9F2DAA00591564 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		80A6D48C1A9F2DAA00591564 /* SampleRss.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SampleRss.xcdatamodel; sourceTree = "<group>"; };
-		80A6D48E1A9F2DAA00591564 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		80A6D48F1A9F2DAA00591564 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		80A6D4921A9F2DAA00591564 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		80A6D4941A9F2DAA00591564 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		80A6D4971A9F2DAA00591564 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		80A6D49D1A9F2DAA00591564 /* SampleRssTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SampleRssTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		80A6D4A21A9F2DAA00591564 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		80A6D4A31A9F2DAA00591564 /* SampleRssTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SampleRssTests.m; sourceTree = "<group>"; };
+		80A6D4AD1A9F331300591564 /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TableViewController.h; path = ../TableViewController.h; sourceTree = "<group>"; };
+		80A6D4AE1A9F331300591564 /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TableViewController.m; path = ../TableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,8 +85,8 @@
 			children = (
 				80A6D4881A9F2DAA00591564 /* AppDelegate.h */,
 				80A6D4891A9F2DAA00591564 /* AppDelegate.m */,
-				80A6D48E1A9F2DAA00591564 /* ViewController.h */,
-				80A6D48F1A9F2DAA00591564 /* ViewController.m */,
+				80A6D4AD1A9F331300591564 /* TableViewController.h */,
+				80A6D4AE1A9F331300591564 /* TableViewController.m */,
 				80A6D4911A9F2DAA00591564 /* Main.storyboard */,
 				80A6D4941A9F2DAA00591564 /* Images.xcassets */,
 				80A6D4961A9F2DAA00591564 /* LaunchScreen.xib */,
@@ -224,8 +224,8 @@
 			files = (
 				80A6D48A1A9F2DAA00591564 /* AppDelegate.m in Sources */,
 				80A6D4871A9F2DAA00591564 /* main.m in Sources */,
-				80A6D4901A9F2DAA00591564 /* ViewController.m in Sources */,
 				80A6D48D1A9F2DAA00591564 /* SampleRss.xcdatamodeld in Sources */,
+				80A6D4AF1A9F331300591564 /* TableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
