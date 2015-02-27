@@ -18,7 +18,7 @@
     [super viewDidLoad];
 }
 
-- (void)showRssItem:(NSRssItem *)rssItem{
+- (void)showRssItem:(RSSItem *)rssItem{
 
 }
 

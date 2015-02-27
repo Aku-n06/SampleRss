@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		809548951AA0800700A0C2C0 /* RSSDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 809548941AA0800700A0C2C0 /* RSSDataManager.m */; };
+		809548981AA0872D00A0C2C0 /* RSSAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 809548971AA0872D00A0C2C0 /* RSSAPI.m */; };
 		80A6D4871A9F2DAA00591564 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A6D4861A9F2DAA00591564 /* main.m */; };
 		80A6D48A1A9F2DAA00591564 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A6D4891A9F2DAA00591564 /* AppDelegate.m */; };
 		80A6D48D1A9F2DAA00591564 /* SampleRss.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 80A6D48B1A9F2DAA00591564 /* SampleRss.xcdatamodeld */; };
@@ -17,7 +19,7 @@
 		80A6D4AF1A9F331300591564 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A6D4AE1A9F331300591564 /* TableViewController.m */; };
 		80A6D4B81A9F3DC400591564 /* DetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A6D4B71A9F3DC400591564 /* DetailView.m */; };
 		80A6D4BD1A9F44E900591564 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A6D4BB1A9F44E900591564 /* DetailViewController.m */; };
-		80A6D4C01A9F46E700591564 /* NSRssItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A6D4BF1A9F46E700591564 /* NSRssItem.m */; };
+		80A6D4C01A9F46E700591564 /* RSSItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A6D4BF1A9F46E700591564 /* RSSItem.m */; };
 		80A6D4C61A9F678100591564 /* RSSDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A6D4C51A9F678100591564 /* RSSDownloader.m */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +34,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		809548931AA0800700A0C2C0 /* RSSDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RSSDataManager.h; path = SampleRss/RSSDataManager.h; sourceTree = "<group>"; };
+		809548941AA0800700A0C2C0 /* RSSDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RSSDataManager.m; path = SampleRss/RSSDataManager.m; sourceTree = "<group>"; };
+		809548961AA0872D00A0C2C0 /* RSSAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RSSAPI.h; path = SampleRss/RSSAPI.h; sourceTree = "<group>"; };
+		809548971AA0872D00A0C2C0 /* RSSAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RSSAPI.m; path = SampleRss/RSSAPI.m; sourceTree = "<group>"; };
 		80A6D4811A9F2DAA00591564 /* SampleRss.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleRss.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80A6D4851A9F2DAA00591564 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		80A6D4861A9F2DAA00591564 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -50,8 +56,8 @@
 		80A6D4B71A9F3DC400591564 /* DetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailView.m; sourceTree = "<group>"; };
 		80A6D4BB1A9F44E900591564 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		80A6D4BC1A9F44E900591564 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
-		80A6D4BE1A9F46E700591564 /* NSRssItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSRssItem.h; path = SampleRss/NSRssItem.h; sourceTree = "<group>"; };
-		80A6D4BF1A9F46E700591564 /* NSRssItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSRssItem.m; path = SampleRss/NSRssItem.m; sourceTree = "<group>"; };
+		80A6D4BE1A9F46E700591564 /* RSSItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RSSItem.h; path = SampleRss/RSSItem.h; sourceTree = "<group>"; };
+		80A6D4BF1A9F46E700591564 /* RSSItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RSSItem.m; path = SampleRss/RSSItem.m; sourceTree = "<group>"; };
 		80A6D4C41A9F678100591564 /* RSSDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RSSDownloader.h; path = SampleRss/RSSDownloader.h; sourceTree = "<group>"; };
 		80A6D4C51A9F678100591564 /* RSSDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RSSDownloader.m; path = SampleRss/RSSDownloader.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -158,10 +164,14 @@
 		80A6D4C71A9F678500591564 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				809548961AA0872D00A0C2C0 /* RSSAPI.h */,
+				809548971AA0872D00A0C2C0 /* RSSAPI.m */,
 				80A6D4C41A9F678100591564 /* RSSDownloader.h */,
 				80A6D4C51A9F678100591564 /* RSSDownloader.m */,
-				80A6D4BE1A9F46E700591564 /* NSRssItem.h */,
-				80A6D4BF1A9F46E700591564 /* NSRssItem.m */,
+				809548931AA0800700A0C2C0 /* RSSDataManager.h */,
+				809548941AA0800700A0C2C0 /* RSSDataManager.m */,
+				80A6D4BE1A9F46E700591564 /* RSSItem.h */,
+				80A6D4BF1A9F46E700591564 /* RSSItem.m */,
 			);
 			name = Model;
 			path = ..;
@@ -271,9 +281,11 @@
 				80A6D4C61A9F678100591564 /* RSSDownloader.m in Sources */,
 				80A6D4871A9F2DAA00591564 /* main.m in Sources */,
 				80A6D48D1A9F2DAA00591564 /* SampleRss.xcdatamodeld in Sources */,
+				809548951AA0800700A0C2C0 /* RSSDataManager.m in Sources */,
+				809548981AA0872D00A0C2C0 /* RSSAPI.m in Sources */,
 				80A6D4AF1A9F331300591564 /* TableViewController.m in Sources */,
 				80A6D4B81A9F3DC400591564 /* DetailView.m in Sources */,
-				80A6D4C01A9F46E700591564 /* NSRssItem.m in Sources */,
+				80A6D4C01A9F46E700591564 /* RSSItem.m in Sources */,
 				80A6D4BD1A9F44E900591564 /* DetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -467,6 +479,7 @@
 				80A6D4A91A9F2DAA00591564 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		80A6D4AA1A9F2DAA00591564 /* Build configuration list for PBXNativeTarget "SampleRssTests" */ = {
 			isa = XCConfigurationList;
@@ -475,6 +488,7 @@
 				80A6D4AC1A9F2DAA00591564 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

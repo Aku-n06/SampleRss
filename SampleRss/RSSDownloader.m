@@ -25,7 +25,8 @@
 -(id)init {
     if(self == [super init]){
         //initialize
-        isDownloading=false;
+        isParsing = false;
+        rssItems = [[NSMutableArray alloc]init];
     }
     return self;
 }
@@ -33,18 +34,19 @@
 //start the parsing of a rss data
 -(void)getRssFromUrl:(NSURL *)sourceUrl{
     //ceck if it's already processing data, this class perform only one download at time
-    if(isDownloading==false){
-        isDownloading=true;
+    if(isParsing == false){
+        isParsing = true;
         //dowload the rss asynchronously
         NSURLRequest *sourceURLRequest =
         [NSURLRequest requestWithURL:sourceUrl];
         [NSURLConnection sendAsynchronousRequest:sourceURLRequest
                                            queue:[NSOperationQueue mainQueue]
                                completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                                   [rssItems removeAllObjects];
                                    if (error != nil) {
-                                       isDownloading=false;
+                                       isParsing=false;
                                        //respond to connection error
-                                        #warning implement network error
+                                       [delegate rssDownloaderNetworkError:error];
                                    }else{
                                        //success, analize the data downloaded
                                        parser = [[NSXMLParser alloc] initWithData:data];
@@ -63,10 +65,10 @@
 
     if ([elementName isEqualToString:@"item"]){
         //it's a new item
-        currentItem = [[NSRssItem alloc] init];
+        currentItem = [[RSSItem alloc] init];
     }
     else if ([elementName isEqualToString:@"media:thumbnail"]||[elementName isEqualToString:@"image"]){
-        currentItem.mediaPictureUrl=[attributeDict valueForKey:@"url"];;
+        currentItem.mediaPictureUrl=[attributeDict valueForKey:@"url"];
     }
     else{
         //it's a new attribute
@@ -91,12 +93,9 @@
     }else if([elementName isEqualToString:@"link"]){
         currentItem.sourceUrl = currentAttribute;
     }else if([elementName isEqualToString:@"item"]){
-        //finisced loading an item
-        //comunicate data using notification
-        assert([NSThread isMainThread]);
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"downloadedItemNotify" object:self userInfo:@{@"rssItemResultsKey":currentItem}];
-        //comunicate data using delegate
-        //[delegate rssDownloaderGotItem:currentItem];
+        //finisced loading an item - comunicate data using delegation
+        [rssItems addObject:currentItem];
+        [delegate rssDownloaderGotItem:currentItem];
     }
     
 }
@@ -112,7 +111,14 @@
 
 -(void)parserDidEndDocument:(NSXMLParser *)parser{
     //finished
-    isDownloading=false;
+    [delegate rssDownloaderCompleteRssArray:rssItems withError:nil];
+    isParsing = false;
+}
+
+-(void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError{
+    //finished
+    [delegate rssDownloaderCompleteRssArray:nil withError:parseError];
+    isParsing = false;
 }
 
 @end

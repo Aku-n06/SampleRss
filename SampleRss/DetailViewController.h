@@ -7,13 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "NSRssItem.h"
+#import "RSSItem.h"
 
 
 @interface DetailViewController : UIViewController{
 
 }
 
--(void)showRssItem:(NSRssItem *)rssItem;
+-(void)showRssItem:(RSSItem *)rssItem;
 
 @end

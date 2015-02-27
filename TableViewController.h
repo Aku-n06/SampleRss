@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "NSRssItem.h"
+#import "RSSItem.h"
 #import "DetailViewController.h"
-#import "RSSDownloader.h"
+#import "RSSAPI.h"
 
-@interface TableViewController : UITableViewController <RSSDownloaderDelegate>{
-    RSSDownloader *rssDownloader;
+@interface TableViewController : UITableViewController {
+    RSSAPI *rssApi;
     
     NSMutableArray *feeds;
 }

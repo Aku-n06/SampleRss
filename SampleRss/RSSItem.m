@@ -1,14 +1,14 @@
 //
-//  NSRssItem.m
+//  RSSItem.m
 //  OpenRssReader
 //
 //  Created by Alberto Scampini on 17/01/15.
 //  Copyright (c) 2015 Alberto Scampini. All rights reserved.
 //
 
-#import "NSRssItem.h"
+#import "RSSItem.h"
 
-@implementation NSRssItem
+@implementation RSSItem
 
 @synthesize titleText;
 @synthesize upDate;

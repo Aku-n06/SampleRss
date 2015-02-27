@@ -1,5 +1,5 @@
 //
-//  NSRssItem.h
+//  RSSItem.h
 //  OpenRssReader
 //
 //  Created by Alberto Scampini on 17/01/15.
@@ -10,7 +10,7 @@
 #import <UIKit/UIKit.h>
 
 //this class store the information of an Item of an rss feed
-@interface NSRssItem : NSObject
+@interface RSSItem : NSObject
 
 //the title of the item
 @property (nonatomic, retain) NSMutableString * titleText;

@@ -27,9 +27,9 @@
     
     //start to get the rssItems
     NSURL *url = [NSURL URLWithString:@"http://newsrss.bbc.co.uk/rss/sportonline_world_edition/front_page/rss.xml"];
-    rssDownloader=[[RSSDownloader alloc] init];
-    [rssDownloader setDelegate:self];
-    [rssDownloader getRssFromUrl:url];
+    rssApi = [[RSSAPI alloc] init];
+    [rssApi getRssFromUrl:url];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -37,8 +37,8 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)addItemToList:(NSRssItem *)loadedItem{
-    [self.tableView beginUpdates];
+- (void)addItemToList:(RSSItem *)loadedItem{
+
     //add element to the table
     NSInteger section = 0;
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[feeds count] inSection:section];
@@ -46,7 +46,7 @@
     
     [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
     
-    [self.tableView endUpdates];
+
 }
 
 #pragma mark - UITableView data source
@@ -65,7 +65,7 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
-    NSRssItem *currentItem = [feeds objectAtIndex:indexPath.row];
+    RSSItem *currentItem = [feeds objectAtIndex:indexPath.row];
     cell.textLabel.text = currentItem.titleText;
     
     return cell;
@@ -76,23 +76,17 @@
     if([[segue identifier] isEqualToString:@"showDetails"]){
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         
-        NSRssItem *selectedItem=[[NSRssItem alloc] init];
+        RSSItem *selectedItem=[[RSSItem alloc] init];
         selectedItem=[feeds objectAtIndex:indexPath.row];
         
         [[segue destinationViewController] showRssItem:selectedItem];
     }
 }
 
-#pragma mark - RSSDownloaded delegate
-
--(void)rssDownloaderGotItem:(NSRssItem *)loadedItem{
-    [self addItemToList:loadedItem];
-}
 
 #pragma mark - RSSDownloaded notification
 
 - (void)addItem:(NSNotification *)notif {
-    
     assert([NSThread isMainThread]);
     [self addItemToList:[[notif userInfo] valueForKey:@"rssItemResultsKey"]];
 }
