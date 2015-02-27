@@ -13,7 +13,7 @@
 
 /* This is a façade class that manage the RSS feed:
 use the RSSDownloader to download the feed from a web url and parse it
-and the RSSDataManager to save the informations downloaded or retrive that
+and the RSSDataManager to save the informations downloaded or retrieve that
 in case of offline usage */
 @interface RSSAPI : NSObject <RSSDownloaderDelegate>{
     RSSDownloader *rssDownloader;

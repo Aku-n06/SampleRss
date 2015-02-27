@@ -30,23 +30,26 @@
                                              selector:@selector(loadingCompleted:)
                                                  name:@"downloadCompletedNotify" object:nil];
     
-    //add loading spinner animation
+    //add a spinner on the top of the tableview that will be used to refresh the data when the user will
+    //pull the table down
     refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(startRefresh)
              forControlEvents:UIControlEventValueChanged];
     [refreshControl setTintColor:[UIColor blackColor]];
     [refreshControl setBackgroundColor:[UIColor colorWithRed:0.96 green:0.96 blue:0.96 alpha:1]];
     [self.tableView addSubview:refreshControl];
-    //start nimation
+    
+    //start the spinner rotation animation
     [refreshControl beginRefreshing];
     
-    //start to get the rssItems
+    //ask the model to retrieve the data of the rss
     NSURL *url = [NSURL URLWithString:rssUrl];
     rssApi = [[RSSAPI alloc] init];
     [rssApi getRssFromUrl:url];
     
 }
 
+//called when the user pull down the tableview, to refresh
 -(void)startRefresh{
     //called when the tableview pulled down (pull to refresh)
     //clear the data
@@ -62,6 +65,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+//called each time a new rss item is given from the rssApi
 -(void)addItemToList:(RSSItem *)loadedItem{
     dispatch_async(dispatch_get_main_queue(), ^{
         //add element to the table
@@ -75,90 +79,70 @@
 
 #pragma mark - UITableView data source
 
+//set just one section in this table
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    // Return the number of sections.
     return 1;
 }
 
+//return the number of rows in the section
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // Return the number of rows in the section.
     return feeds.count;
 }
 
+//set the cell content (title, desctiption label, thumbnail)
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
+    if(cell!=nil){
+        //remove the old thumbnail view (UIWebImageView) if existing, using the tag
+        UIView *oldThumbnailView = [cell.contentView viewWithTag:3];
+        [oldThumbnailView removeFromSuperview];
+    }
+    
     RSSItem *currentItem = [feeds objectAtIndex:indexPath.row];
     
-    //title
+    //set the title of the cell, multirow, size to fit
     cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
     cell.textLabel.numberOfLines = 0;
     cell.textLabel.text = currentItem.titleText;
     [cell.textLabel sizeToFit];
     
-    //description
+    //set the description of the cell, multirow, size to fit
     cell.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
     cell.detailTextLabel.numberOfLines = 0;
     cell.detailTextLabel.text = currentItem.descriptionText;
     [cell.textLabel sizeToFit];
     
     //thumbnail
-    cell.imageView.image = [UIImage imageNamed:@"defaultThumbnail.png"];
-    
+    //set an imageview so to align title and description for the uiwebimageview
+    cell.imageView.image = [UIImage imageNamed:@"defaultThumbnail"];
     if(currentItem.mediaPictureUrl!=nil){
-        //download the picture
-        NSURLSession *session = [NSURLSession sharedSession];
-        NSURL *url = [NSURL URLWithString:currentItem.mediaPictureUrl];
-        NSURLSessionDownloadTask *task = [session downloadTaskWithURL:url completionHandler:
-        ^(NSURL *location, NSURLResponse *response, NSError *error){
-            if(error == nil){
-                //retrive the data from disk
-                NSData *imageData = [[NSData alloc] initWithContentsOfURL:location];
-                //save the picture on temp directory
-                #warning realize the offline cache
-                UIImage *image = [UIImage imageWithData:imageData];
-                image=[self imageWithImage:image scaledToWidth:100];
-                //show the image
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    cell.imageView.image=image;
-                });
-            }
-        }];
-        [task resume];
+        //add a UIWebImageView, that will download the picture asynch
+        UIWebImageView *thumbnailView = [[UIWebImageView alloc] initWithFrame:CGRectMake(10, 20, 100, 100)];
+        [thumbnailView getPictureFromUrl:currentItem.mediaPictureUrl];
+        thumbnailView.tag = 3; //so that it can be removed when this cell will be reused (3 is a lucky number!)
+        [cell.contentView addSubview:thumbnailView];
     }
     
     return cell;
 }
 
+//set the dynamic height of the cell
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     RSSItem *currentItem = [feeds objectAtIndex:indexPath.row];
+    //call a function to calculate the cell height from the title and the description that will be displayed on it
     float cellSize = [self heightForTitle:currentItem.titleText withDetail:currentItem.descriptionText];
     
     return cellSize ;
 }
 
-//this method resize the picture height (used to keep the width to 100 px)
--(UIImage*)imageWithImage: (UIImage*) sourceImage scaledToWidth: (float) width{
-    
-    float oldWidth = sourceImage.size.width;
-    float scaleFactor = width / oldWidth;
-    
-    float newHeight = sourceImage.size.height * scaleFactor;
-    float newWidth = oldWidth * scaleFactor;
-    
-    UIGraphicsBeginImageContext(CGSizeMake(newWidth, newHeight));
-    [sourceImage drawInRect:CGRectMake(0, 0, newWidth, newHeight)];
-    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return newImage;
-}
-
 //this method calculate the cell dimension considering the content will populate it
 -(CGFloat)heightForTitle:(NSString *)title withDetail:(NSString *)detail{
     
-    NSInteger MAX_HEIGHT = 2000;
+    //max height for a cell (if zero, no limitation)
+    NSInteger MAX_HEIGHT = 0;
     
     UILabel * titleTextView= [[UILabel alloc] initWithFrame: CGRectMake(0, 0, self.view.frame.size.width-100, 20)];
     titleTextView.lineBreakMode = NSLineBreakByWordWrapping;
@@ -175,14 +159,15 @@
     [detailTextView sizeToFit];
     
     float calculatedSize =titleTextView.frame.size.height + detailTextView.frame.size.height;
-    if(calculatedSize > MAX_HEIGHT){
+    if(calculatedSize > MAX_HEIGHT && MAX_HEIGHT != 0){
         calculatedSize = MAX_HEIGHT;
     }
     return calculatedSize;
 }
 
-#pragma mark - storyboard
+#pragma mark - Navigation
 
+//this is used to pass the selected item data to the DetailViewController when the user select a cell
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
     if([[segue identifier] isEqualToString:@"showDetails"]){
@@ -203,7 +188,7 @@
 }
 
 -(void)loadingCompleted:(NSNotification *)notif{
-    //start nimation
+    //stop the spinner animation so that it can be used by the user to refresh the table
     dispatch_async(dispatch_get_main_queue(), ^{
         [refreshControl endRefreshing];
     });

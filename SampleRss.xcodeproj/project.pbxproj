@@ -21,8 +21,8 @@
 		80A6D4BD1A9F44E900591564 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A6D4BB1A9F44E900591564 /* DetailViewController.m */; };
 		80A6D4C01A9F46E700591564 /* RSSItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A6D4BF1A9F46E700591564 /* RSSItem.m */; };
 		80A6D4C61A9F678100591564 /* RSSDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A6D4C51A9F678100591564 /* RSSDownloader.m */; };
-		80B93EC21AA0B52A0062E8E8 /* defaultThumbnail.png in Resources */ = {isa = PBXBuildFile; fileRef = 80B93EC11AA0B52A0062E8E8 /* defaultThumbnail.png */; };
 		80B93EC51AA0C8740062E8E8 /* UIWebImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80B93EC41AA0C8740062E8E8 /* UIWebImageView.m */; };
+		80B93EC71AA0D55B0062E8E8 /* defaultThumbnail.png in Resources */ = {isa = PBXBuildFile; fileRef = 80B93EC61AA0D55B0062E8E8 /* defaultThumbnail.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,9 +62,9 @@
 		80A6D4BF1A9F46E700591564 /* RSSItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RSSItem.m; path = SampleRss/RSSItem.m; sourceTree = "<group>"; };
 		80A6D4C41A9F678100591564 /* RSSDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RSSDownloader.h; path = SampleRss/RSSDownloader.h; sourceTree = "<group>"; };
 		80A6D4C51A9F678100591564 /* RSSDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RSSDownloader.m; path = SampleRss/RSSDownloader.m; sourceTree = "<group>"; };
-		80B93EC11AA0B52A0062E8E8 /* defaultThumbnail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = defaultThumbnail.png; sourceTree = "<group>"; };
 		80B93EC31AA0C8740062E8E8 /* UIWebImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIWebImageView.h; sourceTree = "<group>"; };
 		80B93EC41AA0C8740062E8E8 /* UIWebImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIWebImageView.m; sourceTree = "<group>"; };
+		80B93EC61AA0D55B0062E8E8 /* defaultThumbnail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = defaultThumbnail.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,7 +150,6 @@
 			children = (
 				80A6D4AD1A9F331300591564 /* TableViewController.h */,
 				80A6D4AE1A9F331300591564 /* TableViewController.m */,
-				80B93EC11AA0B52A0062E8E8 /* defaultThumbnail.png */,
 				80A6D4BC1A9F44E900591564 /* DetailViewController.h */,
 				80A6D4BB1A9F44E900591564 /* DetailViewController.m */,
 			);
@@ -165,6 +164,7 @@
 				80A6D4B61A9F3DC400591564 /* DetailView.h */,
 				80A6D4B71A9F3DC400591564 /* DetailView.m */,
 				80A6D4911A9F2DAA00591564 /* Main.storyboard */,
+				80B93EC61AA0D55B0062E8E8 /* defaultThumbnail.png */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -265,7 +265,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				80B93EC21AA0B52A0062E8E8 /* defaultThumbnail.png in Resources */,
+				80B93EC71AA0D55B0062E8E8 /* defaultThumbnail.png in Resources */,
 				80A6D4931A9F2DAA00591564 /* Main.storyboard in Resources */,
 				80A6D4981A9F2DAA00591564 /* LaunchScreen.xib in Resources */,
 				80A6D4951A9F2DAA00591564 /* Images.xcassets in Resources */,
