@@ -37,8 +37,7 @@
     if(isParsing == false){
         isParsing = true;
         //dowload the rss asynchronously
-        NSURLRequest *sourceURLRequest =
-        [NSURLRequest requestWithURL:sourceUrl];
+        NSURLRequest *sourceURLRequest = [NSURLRequest requestWithURL:sourceUrl];
         [NSURLConnection sendAsynchronousRequest:sourceURLRequest
                                            queue:[NSOperationQueue mainQueue]
                                completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {

@@ -28,6 +28,8 @@
         #warning error parsing data
     }else{
         RSSDataManager *dataManager = [[RSSDataManager alloc] init];
+        //comunicate the completion
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"downloadCompletedNotify" object:self];
         //clear old data if existing
         [dataManager cleanData];
         //save data to memory
@@ -49,6 +51,8 @@
             //comunicate data using notification
             [[NSNotificationCenter defaultCenter] postNotificationName:@"downloadedItemNotify" object:self userInfo:@{@"rssItemResultsKey":[rssItems objectAtIndex:i]}];
         }
+        //comunicate the completion
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"downloadCompletedNotify" object:self];
     }
 }
 

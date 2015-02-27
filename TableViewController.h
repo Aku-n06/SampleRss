@@ -15,6 +15,9 @@
     RSSAPI *rssApi;
     
     NSMutableArray *feeds;
+    
+    //Pull-to-refresh control to add to the table
+    UIRefreshControl *refreshControl;
 }
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
