@@ -18,12 +18,11 @@
 		80A6D4981A9F2DAA00591564 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80A6D4961A9F2DAA00591564 /* LaunchScreen.xib */; };
 		80A6D4A41A9F2DAA00591564 /* SampleRssTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A6D4A31A9F2DAA00591564 /* SampleRssTests.m */; };
 		80A6D4AF1A9F331300591564 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A6D4AE1A9F331300591564 /* TableViewController.m */; };
-		80A6D4B81A9F3DC400591564 /* DetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A6D4B71A9F3DC400591564 /* DetailView.m */; };
 		80A6D4BD1A9F44E900591564 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A6D4BB1A9F44E900591564 /* DetailViewController.m */; };
 		80A6D4C01A9F46E700591564 /* RSSItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A6D4BF1A9F46E700591564 /* RSSItem.m */; };
 		80A6D4C61A9F678100591564 /* RSSDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A6D4C51A9F678100591564 /* RSSDownloader.m */; };
 		80B93EC51AA0C8740062E8E8 /* UIWebImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80B93EC41AA0C8740062E8E8 /* UIWebImageView.m */; };
-		80B93EC71AA0D55B0062E8E8 /* defaultThumbnail.png in Resources */ = {isa = PBXBuildFile; fileRef = 80B93EC61AA0D55B0062E8E8 /* defaultThumbnail.png */; };
+		80E94ADC1AA33450003DDEF5 /* offline.png in Resources */ = {isa = PBXBuildFile; fileRef = 80E94ADB1AA33450003DDEF5 /* offline.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,8 +55,6 @@
 		80A6D4A31A9F2DAA00591564 /* SampleRssTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SampleRssTests.m; sourceTree = "<group>"; };
 		80A6D4AD1A9F331300591564 /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TableViewController.h; path = ../TableViewController.h; sourceTree = "<group>"; };
 		80A6D4AE1A9F331300591564 /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TableViewController.m; path = ../TableViewController.m; sourceTree = "<group>"; };
-		80A6D4B61A9F3DC400591564 /* DetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailView.h; sourceTree = "<group>"; };
-		80A6D4B71A9F3DC400591564 /* DetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailView.m; sourceTree = "<group>"; };
 		80A6D4BB1A9F44E900591564 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		80A6D4BC1A9F44E900591564 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		80A6D4BE1A9F46E700591564 /* RSSItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RSSItem.h; path = SampleRss/RSSItem.h; sourceTree = "<group>"; };
@@ -66,7 +63,7 @@
 		80A6D4C51A9F678100591564 /* RSSDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RSSDownloader.m; path = SampleRss/RSSDownloader.m; sourceTree = "<group>"; };
 		80B93EC31AA0C8740062E8E8 /* UIWebImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIWebImageView.h; sourceTree = "<group>"; };
 		80B93EC41AA0C8740062E8E8 /* UIWebImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIWebImageView.m; sourceTree = "<group>"; };
-		80B93EC61AA0D55B0062E8E8 /* defaultThumbnail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = defaultThumbnail.png; sourceTree = "<group>"; };
+		80E94ADB1AA33450003DDEF5 /* offline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = offline.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,10 +161,8 @@
 			children = (
 				80B93EC31AA0C8740062E8E8 /* UIWebImageView.h */,
 				80B93EC41AA0C8740062E8E8 /* UIWebImageView.m */,
-				80A6D4B61A9F3DC400591564 /* DetailView.h */,
-				80A6D4B71A9F3DC400591564 /* DetailView.m */,
 				80A6D4911A9F2DAA00591564 /* Main.storyboard */,
-				80B93EC61AA0D55B0062E8E8 /* defaultThumbnail.png */,
+				80E94ADB1AA33450003DDEF5 /* offline.png */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -237,6 +232,11 @@
 				TargetAttributes = {
 					80A6D4801A9F2DAA00591564 = {
 						CreatedOnToolsVersion = 6.1.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 0;
+							};
+						};
 					};
 					80A6D49C1A9F2DAA00591564 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -268,11 +268,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				80B93EC71AA0D55B0062E8E8 /* defaultThumbnail.png in Resources */,
 				80A6D4931A9F2DAA00591564 /* Main.storyboard in Resources */,
 				80A09E541AA2135A00D48D7E /* GeosansLight.ttf in Resources */,
 				80A6D4981A9F2DAA00591564 /* LaunchScreen.xib in Resources */,
 				80A6D4951A9F2DAA00591564 /* Images.xcassets in Resources */,
+				80E94ADC1AA33450003DDEF5 /* offline.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,7 +297,6 @@
 				809548951AA0800700A0C2C0 /* RSSDataManager.m in Sources */,
 				809548981AA0872D00A0C2C0 /* RSSAPI.m in Sources */,
 				80A6D4AF1A9F331300591564 /* TableViewController.m in Sources */,
-				80A6D4B81A9F3DC400591564 /* DetailView.m in Sources */,
 				80B93EC51AA0C8740062E8E8 /* UIWebImageView.m in Sources */,
 				80A6D4C01A9F46E700591564 /* RSSItem.m in Sources */,
 				80A6D4BD1A9F44E900591564 /* DetailViewController.m in Sources */,

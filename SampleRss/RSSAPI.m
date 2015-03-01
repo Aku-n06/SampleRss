@@ -10,6 +10,14 @@
 
 @implementation RSSAPI
 
+-(id)init {
+    if(self == [super init]){
+        //initialize
+        isOnline = true;
+    }
+    return self;
+}
+
 -(void)getRssFromUrl:(NSURL *)sourceUrl{
     rssDownloader=[RSSDownloader sharedManager];
     [rssDownloader setDelegate:self];
@@ -19,6 +27,11 @@
 #pragma mark - RSSDownloaded delegate
 
 -(void)rssDownloaderGotItem:(RSSItem *)loadedItem{
+    if(isOnline == false){
+        //comunicate the network status using notification
+        isOnline = true;
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"networkStatusChanged" object:self userInfo:@{@"isOnline":[NSNumber numberWithBool:isOnline]}];
+    }
     //comunicate data using notification
     [[NSNotificationCenter defaultCenter] postNotificationName:@"downloadedItemNotify" object:self userInfo:@{@"rssItemResultsKey":loadedItem}];
 }
@@ -41,11 +54,17 @@
 }
 
 -(void)rssDownloaderNetworkError:(NSError *)error{
+    if(isOnline == true){
+        //comunicate the network status using notification
+        isOnline = false;
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"networkStatusChanged" object:self userInfo:@{@"isOnline":[NSNumber numberWithBool:isOnline]}];
+    }
     //load rss data from memory (coredata)
     RSSDataManager *dataManager = [[RSSDataManager alloc] init];
     NSMutableArray *rssItems = [dataManager loadRssListFromDatabase];
     if(rssItems == nil){
-        #warning no offline data available
+        //no offline data - comunicate the completion
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"downloadCompletedNotify" object:self];
     }else{
         for(int i=0; i < [rssItems count]; i++){
             //comunicate data using notification

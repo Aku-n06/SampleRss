@@ -25,6 +25,10 @@ Selecting a cell the DetailViewController will be called. */
     NSMutableArray *feeds;
     //Pull-to-refresh control to add to the table
     UIRefreshControl *refreshControl;
+    //used to update the data show in the tableview when the first element are downloaded the old elements are removed
+    BOOL isFirstElementLoaded;
+    //show the network status
+    BOOL isOnline;
 }
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;

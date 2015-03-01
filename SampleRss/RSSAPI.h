@@ -17,6 +17,8 @@ and the RSSDataManager to save the informations downloaded or retrieve that
 in case of offline usage */
 @interface RSSAPI : NSObject <RSSDownloaderDelegate>{
     RSSDownloader *rssDownloader;
+    //network status
+    BOOL isOnline;
 }
 
 -(void)getRssFromUrl:(NSURL *)sourceUrl;
