@@ -16,10 +16,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self showWebPageWithUrl:self.urlString];
 }
 
-- (void)showRssItem:(RSSItem *)rssItem{
-
+-(void)showWebPageWithUrl:(NSString *)urlString{
+    //remove space from url (some url have a space at the end that invalidate the request)
+    NSArray* strings = [urlString componentsSeparatedByCharactersInSet :[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    //create and send the request
+    NSURL *websiteUrl = [NSURL URLWithString:[strings objectAtIndex:0]];
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:websiteUrl];
+    [self.webPage loadRequest:urlRequest];
+    //start the progressbar animation (60 fps)
+    self.progressLoadingPage.progress = 0;
+    loadingComplete = false;
+    animateProgressTimer = [NSTimer scheduledTimerWithTimeInterval:0.01667 target:self selector:@selector(animateProgressLoadingPage) userInfo:nil repeats:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -27,14 +37,28 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void)animateProgressLoadingPage {
+    if (loadingComplete) {
+        if (self.progressLoadingPage.progress >= 1) {
+            self.progressLoadingPage.hidden = true;
+            [animateProgressTimer invalidate];
+        }
+        else {
+            self.progressLoadingPage.progress += 0.1;
+        }
+    }
+    else {
+        if (self.progressLoadingPage.progress < 0.95) {
+            self.progressLoadingPage.progress += 0.005;
+        }
+    }
 }
-*/
+
+#pragma mark - UIWebViewDelegate
+
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    loadingComplete = true;
+}
 
 @end

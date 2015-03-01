@@ -105,8 +105,8 @@
     //ceck if the data exists
     if(result.count>0){
         //clear all and update all
-        for (NSManagedObject * temp_Feed in result) {
-            [[self managedObjectContext] deleteObject:temp_Feed];
+        for (NSManagedObject * tempFeed in result) {
+            [[self managedObjectContext] deleteObject:tempFeed];
         }
         NSError *saveError = nil;
         [[self managedObjectContext] save:&saveError];

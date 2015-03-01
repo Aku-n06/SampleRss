@@ -5,6 +5,7 @@
 //  Created by Alberto Scampini on 26/02/15.
 //  Copyright (c) 2015 Alberto Scampini. All rights reserved.
 //
+//#define rssUrl @"http://rss.cnn.com/rss/cnn_tech.rss"
 #define rssUrl @"http://newsrss.bbc.co.uk/rss/sportonline_world_edition/front_page/rss.xml"
 #import "TableViewController.h"
 
@@ -95,6 +96,12 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
     if(cell!=nil){
+        //remove old title label
+        UIView *oldTitleView = [cell.contentView viewWithTag:1];
+        [oldTitleView removeFromSuperview];
+        //remove old description label
+        UIView *oldDescriptionView = [cell.contentView viewWithTag:2];
+        [oldDescriptionView removeFromSuperview];
         //remove the old thumbnail view (UIWebImageView) if existing, using the tag
         UIView *oldThumbnailView = [cell.contentView viewWithTag:3];
         [oldThumbnailView removeFromSuperview];
@@ -103,16 +110,24 @@
     RSSItem *currentItem = [feeds objectAtIndex:indexPath.row];
     
     //set the title of the cell, multirow, size to fit
-    cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    cell.textLabel.numberOfLines = 0;
-    cell.textLabel.text = currentItem.titleText;
-    [cell.textLabel sizeToFit];
+    UILabel *titleLabel =[[UILabel alloc] initWithFrame:CGRectMake(120, 20, self.view.frame.size.width-130, 20)];
+    titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    titleLabel.numberOfLines = 0;
+    titleLabel.font = [UIFont fontWithName:@"GeosansLight" size:18.0];
+    titleLabel.text = currentItem.titleText;
+    [titleLabel sizeToFit];
+    titleLabel.tag = 1;
+    [cell.contentView addSubview:titleLabel];
     
     //set the description of the cell, multirow, size to fit
-    cell.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    cell.detailTextLabel.numberOfLines = 0;
-    cell.detailTextLabel.text = currentItem.descriptionText;
-    [cell.textLabel sizeToFit];
+    UILabel *descriptionLabel =[[UILabel alloc] initWithFrame:CGRectMake(120, titleLabel.frame.size.height + 10, self.view.frame.size.width-130, 20)];
+    descriptionLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    descriptionLabel.numberOfLines = 0;
+    descriptionLabel.font = [UIFont fontWithName:@"GeosansLight" size:14.0];
+    descriptionLabel.text = currentItem.descriptionText;
+    [descriptionLabel sizeToFit];
+    descriptionLabel.tag = 2;
+    [cell.contentView addSubview:descriptionLabel];
     
     //thumbnail
     //set an imageview so to align title and description for the uiwebimageview
@@ -121,7 +136,7 @@
         //add a UIWebImageView, that will download the picture asynch
         UIWebImageView *thumbnailView = [[UIWebImageView alloc] initWithFrame:CGRectMake(10, 20, 100, 100)];
         [thumbnailView getPictureFromUrl:currentItem.mediaPictureUrl];
-        thumbnailView.tag = 3; //so that it can be removed when this cell will be reused (3 is a lucky number!)
+        thumbnailView.tag = 3; //so that it can be removed when this cell will be reused
         [cell.contentView addSubview:thumbnailView];
     }
     
@@ -142,25 +157,29 @@
 -(CGFloat)heightForTitle:(NSString *)title withDetail:(NSString *)detail{
     
     //max height for a cell (if zero, no limitation)
-    NSInteger MAX_HEIGHT = 0;
+    NSInteger maxHeight = 0;
     
-    UILabel * titleTextView= [[UILabel alloc] initWithFrame: CGRectMake(0, 0, self.view.frame.size.width-100, 20)];
-    titleTextView.lineBreakMode = NSLineBreakByWordWrapping;
-    titleTextView.numberOfLines = 0;
-    titleTextView.font = [UIFont fontWithName:@"System" size:16.0];
-    titleTextView.text = title;
-    [titleTextView sizeToFit];
+
+    //set the title of the cell, multirow, size to fit
+    UILabel *titleLabel =[[UILabel alloc] initWithFrame:CGRectMake(120, 20, self.view.frame.size.width-130, 20)];
+    titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    titleLabel.numberOfLines = 0;
+    titleLabel.font = [UIFont fontWithName:@"GeosansLight" size:18.0];
+    titleLabel.text = title;
+    [titleLabel sizeToFit];
     
-    UILabel * detailTextView= [[UILabel alloc] initWithFrame: CGRectMake(0, 0, self.view.frame.size.width-100, 20)];
-    detailTextView.lineBreakMode = NSLineBreakByWordWrapping;
-    detailTextView.numberOfLines = 0;
-    detailTextView.font = [UIFont fontWithName:@"System" size:11.0];
-    detailTextView.text = detail;
-    [detailTextView sizeToFit];
+    //set the description of the cell, multirow, size to fit
+    UILabel *descriptionLabel =[[UILabel alloc] initWithFrame:CGRectMake(120, titleLabel.frame.size.height, self.view.frame.size.width-130, 20)];
+    descriptionLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    descriptionLabel.numberOfLines = 0;
+    descriptionLabel.font = [UIFont fontWithName:@"GeosansLight" size:14.0];
+    descriptionLabel.text = detail;
+    [descriptionLabel sizeToFit];
     
-    float calculatedSize =titleTextView.frame.size.height + detailTextView.frame.size.height;
-    if(calculatedSize > MAX_HEIGHT && MAX_HEIGHT != 0){
-        calculatedSize = MAX_HEIGHT;
+    //make the calculation (10 is the space between the title and the description)
+    float calculatedSize =titleLabel.frame.size.height + 10 + descriptionLabel.frame.size.height;
+    if(calculatedSize > maxHeight && maxHeight != 0){
+        calculatedSize = maxHeight;
     }
     return calculatedSize;
 }
@@ -176,7 +195,7 @@
         RSSItem *selectedItem=[[RSSItem alloc] init];
         selectedItem=[feeds objectAtIndex:indexPath.row];
         
-        [[segue destinationViewController] showRssItem:selectedItem];
+        [[segue destinationViewController] setUrlString:selectedItem.sourceUrl];
     }
 }
 

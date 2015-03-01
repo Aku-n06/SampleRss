@@ -13,24 +13,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" textLabel="gqS-ti-IPV" detailTextLabel="HXk-Jb-Ene" style="IBUITableViewCellStyleSubtitle" id="ral-1c-haT">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" id="ral-1c-haT">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ral-1c-haT" id="wKP-GB-dUs">
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gqS-ti-IPV" propertyAccessControl="none">
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HXk-Jb-Ene">
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
                                 </tableViewCellContentView>
                                 <connections>
                                     <segue destination="agf-ir-fWq" kind="push" identifier="showDetails" id="kvd-QV-xyF"/>
@@ -60,9 +46,36 @@
                     <view key="view" contentMode="scaleToFill" id="z2f-qc-nJx">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DXP-Ba-feS">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="delegate" destination="agf-ir-fWq" id="qWd-5S-hF8"/>
+                                </connections>
+                            </webView>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="U91-BR-xTz">
+                                <rect key="frame" x="0.0" y="64" width="600" height="3"/>
+                            </progressView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="DXP-Ba-feS" firstAttribute="leading" secondItem="z2f-qc-nJx" secondAttribute="leading" id="K90-Mk-Bmc"/>
+                            <constraint firstItem="U91-BR-xTz" firstAttribute="leading" secondItem="z2f-qc-nJx" secondAttribute="leading" id="U3a-gu-9hp"/>
+                            <constraint firstAttribute="trailing" secondItem="U91-BR-xTz" secondAttribute="trailing" id="nt1-gG-wfV"/>
+                            <constraint firstItem="IlK-tp-SmG" firstAttribute="top" secondItem="DXP-Ba-feS" secondAttribute="bottom" id="okH-Cy-kAB"/>
+                            <constraint firstAttribute="trailing" secondItem="DXP-Ba-feS" secondAttribute="trailing" id="vtV-na-HTG"/>
+                            <constraint firstItem="DXP-Ba-feS" firstAttribute="top" secondItem="6DY-hE-bZQ" secondAttribute="top" id="yds-NB-0bf"/>
+                            <constraint firstItem="U91-BR-xTz" firstAttribute="top" secondItem="6DY-hE-bZQ" secondAttribute="bottom" id="z5X-cM-MXv"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="jGA-dm-Hp0"/>
+                    <navigationItem key="navigationItem" id="jGA-dm-Hp0">
+                        <nil key="title"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="progressLoadingPage" destination="U91-BR-xTz" id="6p6-4h-eBT"/>
+                        <outlet property="webPage" destination="DXP-Ba-feS" id="q1L-lU-khh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mz1-6i-GDv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

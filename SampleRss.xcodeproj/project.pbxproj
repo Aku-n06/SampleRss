@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		809548951AA0800700A0C2C0 /* RSSDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 809548941AA0800700A0C2C0 /* RSSDataManager.m */; };
 		809548981AA0872D00A0C2C0 /* RSSAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 809548971AA0872D00A0C2C0 /* RSSAPI.m */; };
+		80A09E541AA2135A00D48D7E /* GeosansLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 80A09E531AA2135A00D48D7E /* GeosansLight.ttf */; };
 		80A6D4871A9F2DAA00591564 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A6D4861A9F2DAA00591564 /* main.m */; };
 		80A6D48A1A9F2DAA00591564 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A6D4891A9F2DAA00591564 /* AppDelegate.m */; };
 		80A6D48D1A9F2DAA00591564 /* SampleRss.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 80A6D48B1A9F2DAA00591564 /* SampleRss.xcdatamodeld */; };
@@ -40,6 +41,7 @@
 		809548941AA0800700A0C2C0 /* RSSDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RSSDataManager.m; path = SampleRss/RSSDataManager.m; sourceTree = "<group>"; };
 		809548961AA0872D00A0C2C0 /* RSSAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RSSAPI.h; path = SampleRss/RSSAPI.h; sourceTree = "<group>"; };
 		809548971AA0872D00A0C2C0 /* RSSAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RSSAPI.m; path = SampleRss/RSSAPI.m; sourceTree = "<group>"; };
+		80A09E531AA2135A00D48D7E /* GeosansLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GeosansLight.ttf; sourceTree = "<group>"; };
 		80A6D4811A9F2DAA00591564 /* SampleRss.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleRss.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80A6D4851A9F2DAA00591564 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		80A6D4861A9F2DAA00591564 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 				80A6D4831A9F2DAA00591564 /* SampleRss */,
 				80A6D4A01A9F2DAA00591564 /* SampleRssTests */,
 				80A6D4821A9F2DAA00591564 /* Products */,
+				80A09E531AA2135A00D48D7E /* GeosansLight.ttf */,
 			);
 			sourceTree = "<group>";
 		};
@@ -267,6 +270,7 @@
 			files = (
 				80B93EC71AA0D55B0062E8E8 /* defaultThumbnail.png in Resources */,
 				80A6D4931A9F2DAA00591564 /* Main.storyboard in Resources */,
+				80A09E541AA2135A00D48D7E /* GeosansLight.ttf in Resources */,
 				80A6D4981A9F2DAA00591564 /* LaunchScreen.xib in Resources */,
 				80A6D4951A9F2DAA00591564 /* Images.xcassets in Resources */,
 			);
