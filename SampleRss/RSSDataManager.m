@@ -10,11 +10,11 @@
 
 @implementation RSSDataManager
 
--(BOOL)addItemsToDatabase:(NSMutableArray *)rssItems{
+-(BOOL)addItemsToDatabase:(NSMutableArray *)rssItems {
     BOOL success=YES;
     //create entity and add store on it the Item data
     
-    for(int i=0; i<[rssItems count]; i++){
+    for(int i=0; i<[rssItems count]; i++) {
         NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"RSSItem" inManagedObjectContext:[self managedObjectContext]];
         NSManagedObject *newItem = [[NSManagedObject alloc] initWithEntity:entityDescription insertIntoManagedObjectContext:[self managedObjectContext]];
         RSSItem *rssItem = [rssItems objectAtIndex:i];
@@ -36,7 +36,7 @@
     return success;
 }
 
--(NSMutableArray *)loadRssListFromDatabase{
+-(NSMutableArray *)loadRssListFromDatabase {
     NSMutableArray *tempItemList=[[NSMutableArray alloc]init];
     
     //create the request
@@ -54,7 +54,7 @@
         NSLog(@"%@, %@", error, error.localizedDescription);
     } else {
         //estract the Item informations and store them in the array to retourn
-        for(int i=0; i<result.count; i++){
+        for(int i=0; i<result.count; i++) {
             
             NSManagedObject *loadedItem = (NSManagedObject *)[result objectAtIndex:i];
             RSSItem *rssItem = [[RSSItem alloc] init];
@@ -72,8 +72,7 @@
     return tempItemList;
 }
 
-
--(BOOL)cleanData{
+-(BOOL)cleanData {
     BOOL success=YES;
     
     //remove all the pictures
@@ -92,7 +91,7 @@
     NSArray *result = [[self managedObjectContext] executeFetchRequest:fetchRequest error:&error];
     
     //ceck if the data exists
-    if(result.count>0){
+    if (result.count>0) {
         //clear all and update all
         for (NSManagedObject * tempFeed in result) {
             [[self managedObjectContext] deleteObject:tempFeed];

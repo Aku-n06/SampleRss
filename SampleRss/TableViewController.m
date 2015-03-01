@@ -6,7 +6,14 @@
 //  Copyright (c) 2015 Alberto Scampini. All rights reserved.
 //
 
-#define rssUrl @"http://newsrss.bbc.co.uk/rss/sportonline_world_edition/front_page/rss.xml"
+//sport
+//#define rssUrl @"http://newsrss.bbc.co.uk/rss/sportonline_world_edition/front_page/rss.xml"
+//top stories
+//#define rssUrl @"http://feeds.bbci.co.uk/news/rss.xml"
+//world
+//#define rssUrl @"feed://feeds.bbci.co.uk/news/world/rss.xml"
+//technology
+#define rssUrl @"http://feeds.bbci.co.uk/news/technology/rss.xml"
 
 #import "TableViewController.h"
 
@@ -18,9 +25,8 @@
 
 -(void)viewDidLoad {
     [super viewDidLoad];
-
-    isOnline=true;
     
+    isOnline=true;
     isFirstElementLoaded = false;
     
     //create the feed array empty
@@ -56,12 +62,20 @@
     rssApi = [[RSSAPI alloc] init];
     [rssApi getRssFromUrl:url];
     
+    //add the change orientation notification
+    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+}
+
+//in case of change of orientation reload the table to resize the cells
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration {
+    [self.tableView reloadData];
 }
 
 //called when the user pull down the tableview, to refresh
--(void)startRefresh{
+-(void)startRefresh {
+    
     //called when the tableview pulled down (pull to refresh)
-    //prepare to clear all data
+    //prepare to clear all the displayed data from the tableView
     isFirstElementLoaded = false;
     //ask the api for new data
     NSURL *url = [NSURL URLWithString:rssUrl];
@@ -74,10 +88,10 @@
 }
 
 //called each time a new rss item is given from the rssApi
--(void)addItemToList:(RSSItem *)loadedItem{
+-(void)addItemToList:(RSSItem *)loadedItem {
     dispatch_async(dispatch_get_main_queue(), ^{
-        if(isFirstElementLoaded == false){
-            if(isOnline == true){
+        if (isFirstElementLoaded == false) {
+            if (isOnline == true) {
                 //remove all the old picture stored in the temporary directory
                 NSArray* tmpDirectory = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:NSTemporaryDirectory() error:NULL];
                 for (NSString *file in tmpDirectory) {
@@ -92,9 +106,9 @@
         //add element to the table
         NSInteger section = 0;
         NSInteger row;
-        if(isOnline == false){
+        if (isOnline == false) {
             row = [feeds count] + 1;
-        }else{
+        }else {
             row = [feeds count];
         }
         [feeds addObject:loadedItem];
@@ -114,7 +128,7 @@
 
 //return the number of rows in the section
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if(isOnline == false){
+    if (isOnline == false) {
         //add a new row (the first row that will show an offline feedback message to the user)
         return [feeds count] + 1;
     }
@@ -126,7 +140,10 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
-    if(cell!=nil){
+    if (cell == nil) {
+        
+    }
+    else {
         //remove old title label
         UIView *oldTitleView = [cell.contentView viewWithTag:1];
         [oldTitleView removeFromSuperview];
@@ -137,8 +154,8 @@
         UIView *oldThumbnailView = [cell.contentView viewWithTag:3];
         [oldThumbnailView removeFromSuperview];
     }
-    
-    if(isOnline == false && indexPath.row == 0){
+
+    if (isOnline == false && indexPath.row == 0) {
         //in case of offline usage the first row will show an offline feedback message to the user
         UILabel *descriptionLabel =[[UILabel alloc] initWithFrame:CGRectMake(0, 0, cell.frame.size.width, 20)];
         descriptionLabel.lineBreakMode = NSLineBreakByWordWrapping;
@@ -150,63 +167,64 @@
         descriptionLabel.tag = 2;
         [cell.contentView addSubview:descriptionLabel];
     }
-    else{
+    else {
         //adjust the index of the element is going to be loaded in case of offline usage becouse in that particular case in the
         //first row will be displayed an "offline" message to the user
+        
         RSSItem *currentItem = [[RSSItem alloc] init];
-        if(isOnline == false){
+        if (isOnline == false) {
             currentItem = [feeds objectAtIndex:indexPath.row - 1];
-        }else{
+        }
+        else {
             currentItem = [feeds objectAtIndex:indexPath.row];
         }
-    
-    //set the title of the cell, multirow, size to fit
-    UILabel *titleLabel =[[UILabel alloc] initWithFrame:CGRectMake(120, 20, self.view.frame.size.width-130, 20)];
-    titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    titleLabel.numberOfLines = 0;
-    titleLabel.font = [UIFont fontWithName:@"GeosansLight" size:18.0];
-    titleLabel.text = currentItem.titleText;
-    [titleLabel sizeToFit];
-    titleLabel.tag = 1;
-    [cell.contentView addSubview:titleLabel];
-    
-    //set the description of the cell, multirow, size to fit
-    UILabel *descriptionLabel =[[UILabel alloc] initWithFrame:CGRectMake(120, titleLabel.frame.size.height + 10, self.view.frame.size.width-130, 20)];
-    descriptionLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    descriptionLabel.numberOfLines = 0;
-    descriptionLabel.font = [UIFont fontWithName:@"GeosansLight" size:14.0];
-    descriptionLabel.text = currentItem.descriptionText;
-    [descriptionLabel sizeToFit];
-    descriptionLabel.tag = 2;
-    [cell.contentView addSubview:descriptionLabel];
-    
-    //thumbnail
-    if(currentItem.mediaPictureUrl!=nil){
-        //add a UIWebImageView, that will download the picture asynch
-        UIWebImageView *thumbnailView = [[UIWebImageView alloc] initWithFrame:CGRectMake(10, 20, 100, 100)];
-        [thumbnailView getPictureFromUrl:currentItem.mediaPictureUrl];
-        thumbnailView.tag = 3; //so that it can be removed when this cell will be reused
-        [cell.contentView addSubview:thumbnailView];
-    }
-    
+        
+        //set the title of the cell, multirow, size to fit
+        UILabel *titleLabel =[[UILabel alloc] initWithFrame:CGRectMake(120, 20, self.view.frame.size.width-130, 20)];
+        titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        titleLabel.numberOfLines = 0;
+        titleLabel.font = [UIFont fontWithName:@"GeosansLight" size:18.0];
+        titleLabel.text = currentItem.titleText;
+        [titleLabel sizeToFit];
+        titleLabel.tag = 1;
+        [cell.contentView addSubview:titleLabel];
+        
+        //set the description of the cell, multirow, size to fit
+        UILabel *descriptionLabel =[[UILabel alloc] initWithFrame:CGRectMake(120, titleLabel.frame.size.height + 10, self.view.frame.size.width-130, 20)];
+        descriptionLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        descriptionLabel.numberOfLines = 0;
+        descriptionLabel.font = [UIFont fontWithName:@"GeosansLight" size:14.0];
+        descriptionLabel.text = currentItem.descriptionText;
+        [descriptionLabel sizeToFit];
+        descriptionLabel.tag = 2;
+        [cell.contentView addSubview:descriptionLabel];
+        
+        //thumbnail
+        if (currentItem.mediaPictureUrl != nil) {
+            //add a UIWebImageView, that will download the picture asynch
+            UIWebImageView *thumbnailView = [[UIWebImageView alloc] initWithFrame:CGRectMake(10, 20, 100, 100)];
+            [thumbnailView getPictureFromUrl:currentItem.mediaPictureUrl];
+            thumbnailView.tag = 3; //so that it can be removed when this cell will be reused
+            [cell.contentView addSubview:thumbnailView];
+        }
     }
     
     return cell;
 }
 
 //set the dynamic height of the cell
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if(isOnline == false && indexPath.row == 0){
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (isOnline == false && indexPath.row == 0) {
         //in case of offline usage the first row will show an offline feedback message to the user
         return 20;
     }
-    //adjust the index of the element is going to be loaded in case of offline usage becouse in that particular case in the
-    //first row will be displayed an "offline" message to the user
+    
+    //adjust the index of the element is going to be loaded in case of offline usage, becouse in that particular case in the
+    //first row will be displayed an "offline" message for the user
     RSSItem *currentItem = [[RSSItem alloc] init];
-    if(isOnline == false){
+    if (isOnline == false) {
         currentItem = [feeds objectAtIndex:indexPath.row - 1];
-    }else{
+    }else {
         currentItem = [feeds objectAtIndex:indexPath.row];
     }
     //call a function to calculate the cell height from the title and the description that will be displayed on it
@@ -216,7 +234,7 @@
 }
 
 //this method calculate the cell dimension considering the content will populate it
--(CGFloat)heightForTitle:(NSString *)title withDetail:(NSString *)detail{
+-(CGFloat)heightForTitle:(NSString *)title withDetail:(NSString *)detail {
     
     //max height for a cell (if zero, no limitation)
     NSInteger maxHeight = 0;
@@ -240,22 +258,56 @@
     
     //make the calculation (10 is the space between the title and the description)
     float calculatedSize =titleLabel.frame.size.height + 10 + descriptionLabel.frame.size.height;
-    if(calculatedSize > maxHeight && maxHeight != 0){
+    if (calculatedSize > maxHeight && maxHeight != 0) {
         calculatedSize = maxHeight;
     }
     return calculatedSize;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (isOnline == false) {
+        
+        //when offline the DetailView is disable, so remove the gray selection and add
+        //a red animation to give the user a feedback that this view can't be opened
+        //offline
+        
+        //remove selection effect
+        [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
+        
+        //add red pulsing animation
+        UITableViewCell *selectedCell = [self.tableView cellForRowAtIndexPath:indexPath];
+        selectedCell.backgroundColor = [UIColor colorWithRed:1 green:0 blue:0 alpha:0.5];
+        UIViewAnimationOptions option1 = UIViewAnimationOptionOverrideInheritedDuration;
+        [UIView transitionWithView:selectedCell
+                          duration:1
+                           options:option1
+                        animations:^{
+                            selectedCell.backgroundColor = [UIColor colorWithRed:1 green:0 blue:0 alpha:0];
+                        }
+                        completion:nil];
+        
+    }else{
+        [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    }
+}
+
 #pragma mark - Navigation
 
--(void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated{
-  
+-(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
+    //disabled the detailView for offline usage
+    if ([identifier isEqualToString:@"showDetails"]) {
+        if (isOnline == false) {
+            return NO;
+        }
+    }
+    return YES;
 }
 
 //this is used to pass the selected item data to the DetailViewController when the user select a cell
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
-    if([[segue identifier] isEqualToString:@"showDetails"]){
+    if ([[segue identifier] isEqualToString:@"showDetails"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         
         RSSItem *selectedItem=[[RSSItem alloc] init];
@@ -268,36 +320,37 @@
 
 #pragma mark - RSSAPI notification response
 
--(void)addItem:(NSNotification *)notif{
+-(void)addItem:(NSNotification *)notif {
     [self addItemToList:[[notif userInfo] valueForKey:@"rssItemResultsKey"]];
 }
 
--(void)networkStatusChanged:(NSNotification *)notif{
+-(void)networkStatusChanged:(NSNotification *)notif {
     //update the flag and the interface, adding on removing the first row "offline" message
     BOOL newOnlineFlag = [[[notif userInfo] valueForKey:@"isOnline"] boolValue];
-    if(newOnlineFlag != isOnline){//network status changed
+    
+    if (newOnlineFlag != isOnline) {
+        
+        //network status changed
         isOnline = newOnlineFlag;
-        if(isOnline == true){
+        
+        if (isOnline == true) {
             //remove the first row with the "offline message"
             dispatch_async(dispatch_get_main_queue(), ^{
                 NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
                 [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-                //enable the selection feature
-                self.tableView.allowsSelection = YES;
             });
-        }else{
+        }else {
             //add the first row with the "offline message"
             dispatch_async(dispatch_get_main_queue(), ^{
                 NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
                 [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-                //when offline the detailedview is disabled so the selection is disabled
-                self.tableView.allowsSelection = NO;
             });
         }
     }
 }
 
--(void)loadingCompleted:(NSNotification *)notif{
+-(void)loadingCompleted:(NSNotification *)notif {
+    
     //stop the spinner animation so that it can be used by the user to refresh the table
     dispatch_async(dispatch_get_main_queue(), ^{
         [refreshControl endRefreshing];

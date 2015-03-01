@@ -10,8 +10,7 @@
 
 @implementation UIWebImageView
 
-- (id)initWithFrame:(CGRect)frame
-{
+- (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         
@@ -19,25 +18,25 @@
     return self;
 }
 
--(void)getPictureFromUrl:(NSString *)stringUrl{
+-(void)getPictureFromUrl:(NSString *)stringUrl {
     //try to load picture from the remporary directory
     NSString *formattetName = [stringUrl stringByReplacingOccurrencesOfString:@"/" withString:@"_"];
     NSString *fileName=[NSString stringWithFormat:@"picture_%@.jpg",formattetName];
     NSString *fileURL = [NSTemporaryDirectory() stringByAppendingPathComponent:fileName];
-    if([[NSFileManager defaultManager] fileExistsAtPath:fileURL]){
+    if ([[NSFileManager defaultManager] fileExistsAtPath:fileURL]) {
         //the image exists so I load and show the image
         UIImage *image =[UIImage imageNamed:fileURL];
         imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 100, image.size.height)];
         [self addSubview:imageView];
         imageView.image=image;
     }
-    else{
+    else {
         //download the picture from the web
         NSURLSession *session = [NSURLSession sharedSession];
         NSURL *url = [NSURL URLWithString:stringUrl];
         task = [session downloadTaskWithURL:url completionHandler:
-                ^(NSURL *location, NSURLResponse *response, NSError *error){
-                    if(error == nil){
+                ^(NSURL *location, NSURLResponse *response, NSError *error) {
+                    if (error == nil) {
                         //retrieve the data from disk
                         NSData *imageData = [[NSData alloc] initWithContentsOfURL:location];
                         UIImage *image = [UIImage imageWithData:imageData];
@@ -48,7 +47,7 @@
                         NSString *formattetName = [stringUrl stringByReplacingOccurrencesOfString:@"/" withString:@"_"];
                         NSString *fileName=[NSString stringWithFormat:@"picture_%@.jpg",formattetName];
                         NSString *fileURL = [NSTemporaryDirectory() stringByAppendingPathComponent:fileName];
-                        if(![data2 writeToFile:fileURL atomically:YES]){
+                        if (![data2 writeToFile:fileURL atomically:YES]) {
                             //error saving the picture data
                         }
                         
@@ -68,7 +67,7 @@
 }
 
 //this method resize the picture height (used to keep the width to 100 px)
--(UIImage*)imageWithImage: (UIImage*) sourceImage scaledToWidth: (float) width{
+-(UIImage*)imageWithImage: (UIImage*) sourceImage scaledToWidth: (float) width {
     
     float oldWidth = sourceImage.size.width;
     float scaleFactor = width / oldWidth;

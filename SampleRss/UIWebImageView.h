@@ -13,7 +13,7 @@
  it in a UIImageView.
  In case of deallocation the url session will be canceled
  */
-@interface UIWebImageView : UIView{
+@interface UIWebImageView : UIView {
     NSURLSessionDownloadTask *task;
     UIImageView *imageView;
 }

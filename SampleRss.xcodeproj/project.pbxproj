@@ -21,7 +21,6 @@
 		80A6D4C01A9F46E700591564 /* RSSItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A6D4BF1A9F46E700591564 /* RSSItem.m */; };
 		80A6D4C61A9F678100591564 /* RSSDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A6D4C51A9F678100591564 /* RSSDownloader.m */; };
 		80B93EC51AA0C8740062E8E8 /* UIWebImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80B93EC41AA0C8740062E8E8 /* UIWebImageView.m */; };
-		80E94ADC1AA33450003DDEF5 /* offline.png in Resources */ = {isa = PBXBuildFile; fileRef = 80E94ADB1AA33450003DDEF5 /* offline.png */; };
 		80E94ADE1AA359BD003DDEF5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80E94ADD1AA359BD003DDEF5 /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -40,7 +39,7 @@
 		809548941AA0800700A0C2C0 /* RSSDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RSSDataManager.m; path = SampleRss/RSSDataManager.m; sourceTree = "<group>"; };
 		809548961AA0872D00A0C2C0 /* RSSAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RSSAPI.h; path = SampleRss/RSSAPI.h; sourceTree = "<group>"; };
 		809548971AA0872D00A0C2C0 /* RSSAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RSSAPI.m; path = SampleRss/RSSAPI.m; sourceTree = "<group>"; };
-		80A09E531AA2135A00D48D7E /* GeosansLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GeosansLight.ttf; sourceTree = "<group>"; };
+		80A09E531AA2135A00D48D7E /* GeosansLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = GeosansLight.ttf; path = ../GeosansLight.ttf; sourceTree = "<group>"; };
 		80A6D4811A9F2DAA00591564 /* SampleRss.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleRss.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80A6D4851A9F2DAA00591564 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		80A6D4861A9F2DAA00591564 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -52,8 +51,8 @@
 		80A6D49D1A9F2DAA00591564 /* SampleRssTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SampleRssTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		80A6D4A21A9F2DAA00591564 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		80A6D4A31A9F2DAA00591564 /* SampleRssTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SampleRssTests.m; sourceTree = "<group>"; };
-		80A6D4AD1A9F331300591564 /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TableViewController.h; path = ../TableViewController.h; sourceTree = "<group>"; };
-		80A6D4AE1A9F331300591564 /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TableViewController.m; path = ../TableViewController.m; sourceTree = "<group>"; };
+		80A6D4AD1A9F331300591564 /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
+		80A6D4AE1A9F331300591564 /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
 		80A6D4BB1A9F44E900591564 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		80A6D4BC1A9F44E900591564 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		80A6D4BE1A9F46E700591564 /* RSSItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RSSItem.h; path = SampleRss/RSSItem.h; sourceTree = "<group>"; };
@@ -62,7 +61,6 @@
 		80A6D4C51A9F678100591564 /* RSSDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RSSDownloader.m; path = SampleRss/RSSDownloader.m; sourceTree = "<group>"; };
 		80B93EC31AA0C8740062E8E8 /* UIWebImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIWebImageView.h; sourceTree = "<group>"; };
 		80B93EC41AA0C8740062E8E8 /* UIWebImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIWebImageView.m; sourceTree = "<group>"; };
-		80E94ADB1AA33450003DDEF5 /* offline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = offline.png; sourceTree = "<group>"; };
 		80E94ADD1AA359BD003DDEF5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -90,7 +88,6 @@
 				80A6D4831A9F2DAA00591564 /* SampleRss */,
 				80A6D4A01A9F2DAA00591564 /* SampleRssTests */,
 				80A6D4821A9F2DAA00591564 /* Products */,
-				80A09E531AA2135A00D48D7E /* GeosansLight.ttf */,
 			);
 			sourceTree = "<group>";
 		};
@@ -124,6 +121,7 @@
 			children = (
 				80A6D4851A9F2DAA00591564 /* Info.plist */,
 				80A6D4861A9F2DAA00591564 /* main.m */,
+				80A09E531AA2135A00D48D7E /* GeosansLight.ttf */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -162,7 +160,6 @@
 				80B93EC31AA0C8740062E8E8 /* UIWebImageView.h */,
 				80B93EC41AA0C8740062E8E8 /* UIWebImageView.m */,
 				80A6D4911A9F2DAA00591564 /* Main.storyboard */,
-				80E94ADB1AA33450003DDEF5 /* offline.png */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -272,7 +269,6 @@
 				80E94ADE1AA359BD003DDEF5 /* Images.xcassets in Resources */,
 				80A09E541AA2135A00D48D7E /* GeosansLight.ttf in Resources */,
 				80A6D4981A9F2DAA00591564 /* LaunchScreen.xib in Resources */,
-				80E94ADC1AA33450003DDEF5 /* offline.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

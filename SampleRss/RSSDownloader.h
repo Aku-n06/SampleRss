@@ -18,7 +18,7 @@
 
 /* This singleton class download a given rss url, parse it, store the data of each
 item on RSSItem classes and send it in a notification.*/
-@interface RSSDownloader : NSObject <NSXMLParserDelegate>{
+@interface RSSDownloader : NSObject <NSXMLParserDelegate> {
     //parser of the rss downloaded
     NSXMLParser *parser;
     //current string of the downloading attribute

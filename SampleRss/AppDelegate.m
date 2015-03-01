@@ -7,8 +7,8 @@
 //
 //
 //  This is a sample code of an rss reader that provide and show the
-//  feed from this url :
-//  http://newsrss.bbc.co.uk/rss/sportonline_world_edition/front_page/rss.xml
+//  feed from BBC technology news :
+//  http://feeds.bbci.co.uk/news/technology/rss.xml
 //
 //  The main design pattern of this application is the MVC, there are also a
 //  façade class (RSSAPI) and a singleton class (RSSDownloader), just to make
@@ -32,9 +32,21 @@
 
 @implementation AppDelegate
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    //change the navigation title font
+    NSShadow *shadow = [[NSShadow alloc] init];
+    shadow.shadowColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.8];
+    shadow.shadowOffset = CGSizeMake(0, 1);
+    [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
+                                                           [UIColor blackColor], NSForegroundColorAttributeName,
+                                                           [UIFont fontWithName:@"GeosansLight" size:28.0], NSFontAttributeName, nil]];
+    //change the bar button item font
+    [[UIBarButtonItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                        [UIColor blackColor],NSForegroundColorAttributeName,[UIFont fontWithName:@"GeosansLight" size:20.0],NSFontAttributeName,
+                                        nil] forState:UIControlStateNormal];
+    
+    
     return YES;
 }
 
@@ -110,7 +122,6 @@
     
     return _persistentStoreCoordinator;
 }
-
 
 - (NSManagedObjectContext *)managedObjectContext {
     // Returns the managed object context for the application (which is already bound to the persistent store coordinator for the application.)

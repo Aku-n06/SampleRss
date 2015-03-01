@@ -17,7 +17,7 @@
 @synthesize mediaPictureUrl;
 
 
--(id)init{
+-(id)init {
     if ((self = [super init])) {
         titleText = nil;
         upDate = nil;

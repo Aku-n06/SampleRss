@@ -21,7 +21,7 @@
     [self showWebPageWithUrl:self.urlString];
 }
 
--(void)showWebPageWithUrl:(NSString *)urlString{
+-(void)showWebPageWithUrl:(NSString *)urlString {
     //remove space from url (some url have a space at the end that invalidate the request)
     NSArray* strings = [urlString componentsSeparatedByCharactersInSet :[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     //create and send the request
@@ -35,9 +35,11 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)animateProgressLoadingPage{
-    if(loadingComplete){
-        if(self.progressLoadingPage.progress >= 1){
+-(void)animateProgressLoadingPage {
+    //method that perform the progressLoading animation (it starts slowly go on
+    //and stop at 95% than, when finished loading go on fast to 100%, than hide
+    if (loadingComplete) {
+        if (self.progressLoadingPage.progress >= 1) {
             self.progressLoadingPage.hidden = true;
             [animateProgressTimer invalidate];
         }
@@ -46,8 +48,8 @@
         }
     }
     else {
-        if(self.progressLoadingPage.progress < 0.95){
-            self.progressLoadingPage.progress += 0.005;
+        if (self.progressLoadingPage.progress < 0.95) {
+            self.progressLoadingPage.progress += 0.002;
         }
     }
 }
@@ -63,7 +65,7 @@
 #pragma mark - UIWebViewDelegate
 
 -(void)webViewDidStartLoad:(UIWebView *)webView{
-    if(loadingComplete == true){
+    if (loadingComplete == true) {
         //start the progressbar animation (60 fps)
         self.progressLoadingPage.hidden = false;
         self.progressLoadingPage.progress = 0;
@@ -72,10 +74,8 @@
     }
 }
 
--(void)webViewDidFinishLoad:(UIWebView *)webView{
+-(void)webViewDidFinishLoad:(UIWebView *)webView {
     loadingComplete = true;
 }
-
-
 
 @end
