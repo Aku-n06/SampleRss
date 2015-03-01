@@ -5,8 +5,9 @@
 //  Created by Alberto Scampini on 26/02/15.
 //  Copyright (c) 2015 Alberto Scampini. All rights reserved.
 //
-//#define rssUrl @"http://rss.cnn.com/rss/cnn_tech.rss"
+
 #define rssUrl @"http://newsrss.bbc.co.uk/rss/sportonline_world_edition/front_page/rss.xml"
+
 #import "TableViewController.h"
 
 @interface TableViewController ()
@@ -45,8 +46,6 @@
     refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(startRefresh)
              forControlEvents:UIControlEventValueChanged];
-    [refreshControl setTintColor:[UIColor blackColor]];
-    [refreshControl setBackgroundColor:[UIColor colorWithRed:0.96 green:0.96 blue:0.96 alpha:1]];
     [self.tableView addSubview:refreshControl];
     
     //start the spinner rotation animation
@@ -78,6 +77,13 @@
 -(void)addItemToList:(RSSItem *)loadedItem{
     dispatch_async(dispatch_get_main_queue(), ^{
         if(isFirstElementLoaded == false){
+            if(isOnline == true){
+                //remove all the old picture stored in the temporary directory
+                NSArray* tmpDirectory = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:NSTemporaryDirectory() error:NULL];
+                for (NSString *file in tmpDirectory) {
+                    [[NSFileManager defaultManager] removeItemAtPath:[NSString stringWithFormat:@"%@%@", NSTemporaryDirectory(), file] error:NULL];
+                }
+            }
             isFirstElementLoaded = true;
             //clear the tableview
             [feeds removeAllObjects];
@@ -241,6 +247,10 @@
 }
 
 #pragma mark - Navigation
+
+-(void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated{
+  
+}
 
 //this is used to pass the selected item data to the DetailViewController when the user select a cell
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{

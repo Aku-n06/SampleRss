@@ -38,7 +38,13 @@
 
 -(void)rssDownloaderCompleteRssArray:(NSMutableArray *)rssItems withError:(NSError *)error{
     if(error){
-        #warning error parsing data
+        //error parsing data
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sorry"
+                                                        message:@"Cannot manage this feed source!"
+                                                       delegate:self
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
     }else{
         RSSDataManager *dataManager = [[RSSDataManager alloc] init];
         //comunicate the completion
@@ -47,7 +53,13 @@
         [dataManager cleanData];
         //save data to memory
         if([dataManager addItemsToDatabase:rssItems] == NO){
-            #warning error saving data
+            //error saving data
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sorry"
+                                                            message:@"An error occurred when saving data offline"
+                                                           delegate:self
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [alert show];
         }
         
     }
@@ -62,7 +74,13 @@
     //load rss data from memory (coredata)
     RSSDataManager *dataManager = [[RSSDataManager alloc] init];
     NSMutableArray *rssItems = [dataManager loadRssListFromDatabase];
-    if(rssItems == nil){
+    if([rssItems count] == 0){
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sorry"
+                                                        message:@"There isn't offline data available, connect to download new data"
+                                                       delegate:self
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
         //no offline data - comunicate the completion
         [[NSNotificationCenter defaultCenter] postNotificationName:@"downloadCompletedNotify" object:self];
     }else{

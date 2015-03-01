@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-//this class store the information of an Item of an rss feed
+//this class store the information of an rss feed item
 @interface RSSItem : NSObject
 
 //the title of the item

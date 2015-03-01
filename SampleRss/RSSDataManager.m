@@ -10,17 +10,6 @@
 
 @implementation RSSDataManager
 
-#pragma mark - CoreData
-
-- (NSManagedObjectContext *)managedObjectContext {
-    NSManagedObjectContext *context = nil;
-    id delegate = [[UIApplication sharedApplication] delegate];
-    if ([delegate performSelector:@selector(managedObjectContext)]) {
-        context = [delegate managedObjectContext];
-    }
-    return context;
-}
-
 -(BOOL)addItemsToDatabase:(NSMutableArray *)rssItems{
     BOOL success=YES;
     //create entity and add store on it the Item data
@@ -120,6 +109,14 @@
     return success;
 }
 
-
+//retrive the managedobjectcontext from the app delegate
+- (NSManagedObjectContext *)managedObjectContext {
+    NSManagedObjectContext *context = nil;
+    id delegate = [[UIApplication sharedApplication] delegate];
+    if ([delegate performSelector:@selector(managedObjectContext)]) {
+        context = [delegate managedObjectContext];
+    }
+    return context;
+}
 
 @end

@@ -12,6 +12,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="ral-1c-haT">
                                 <autoresizingMask key="autoresizingMask"/>
@@ -19,7 +20,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="agf-ir-fWq" kind="push" identifier="showDetails" id="kvd-QV-xyF"/>
+                                    <segue destination="agf-ir-fWq" kind="show" identifier="showDetails" id="kvd-QV-xyF"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -48,7 +49,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DXP-Ba-feS">
-                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="492"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="delegate" destination="agf-ir-fWq" id="qWd-5S-hF8"/>
@@ -65,16 +66,22 @@
                                             <action selector="goBack" destination="DXP-Ba-feS" id="OO2-AH-dlg"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="dM0-m3-lG1"/>
-                                    <barButtonItem systemItem="refresh" id="c1S-rq-Pkw">
+                                    <barButtonItem title="Refresh" style="plain" id="c1S-rq-Pkw">
                                         <connections>
                                             <action selector="reload" destination="DXP-Ba-feS" id="cp4-Ee-vQg"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="dM0-m3-lG1"/>
+                                    <barButtonItem style="plain" systemItem="action" id="Twl-7J-RYS">
+                                        <connections>
+                                            <action selector="openInSafari:" destination="agf-ir-fWq" id="ryb-Wv-6Gj"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                         <constraints>
                             <constraint firstItem="JUz-q9-pFg" firstAttribute="leading" secondItem="z2f-qc-nJx" secondAttribute="leading" id="AgZ-38-oWk"/>
                             <constraint firstItem="DXP-Ba-feS" firstAttribute="leading" secondItem="z2f-qc-nJx" secondAttribute="leading" id="K90-Mk-Bmc"/>
@@ -82,7 +89,7 @@
                             <constraint firstAttribute="trailing" secondItem="JUz-q9-pFg" secondAttribute="trailing" id="UFO-8a-UF2"/>
                             <constraint firstItem="IlK-tp-SmG" firstAttribute="top" secondItem="JUz-q9-pFg" secondAttribute="bottom" id="XpI-ji-Di8"/>
                             <constraint firstAttribute="trailing" secondItem="U91-BR-xTz" secondAttribute="trailing" id="nt1-gG-wfV"/>
-                            <constraint firstItem="IlK-tp-SmG" firstAttribute="top" secondItem="DXP-Ba-feS" secondAttribute="bottom" id="okH-Cy-kAB"/>
+                            <constraint firstItem="IlK-tp-SmG" firstAttribute="top" secondItem="DXP-Ba-feS" secondAttribute="bottom" constant="44" id="okH-Cy-kAB"/>
                             <constraint firstAttribute="trailing" secondItem="DXP-Ba-feS" secondAttribute="trailing" id="vtV-na-HTG"/>
                             <constraint firstItem="DXP-Ba-feS" firstAttribute="top" secondItem="6DY-hE-bZQ" secondAttribute="top" id="yds-NB-0bf"/>
                             <constraint firstItem="U91-BR-xTz" firstAttribute="top" secondItem="6DY-hE-bZQ" secondAttribute="bottom" id="z5X-cM-MXv"/>
@@ -119,4 +126,5 @@
             <point key="canvasLocation" x="193" y="-91"/>
         </scene>
     </scenes>
+    <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
 </document>

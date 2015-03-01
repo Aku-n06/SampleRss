@@ -10,7 +10,7 @@
 #import <CoreData/CoreData.h>
 #import "RSSItem.h"
 
-//this class save and load the RSS informations using coredata
+//this class save and load the RSS informations using coredata framework
 @interface RSSDataManager : NSObject
 
 //used to add an Article with xcdatamodel to the database

@@ -14,7 +14,6 @@
 		80A6D48A1A9F2DAA00591564 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A6D4891A9F2DAA00591564 /* AppDelegate.m */; };
 		80A6D48D1A9F2DAA00591564 /* SampleRss.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 80A6D48B1A9F2DAA00591564 /* SampleRss.xcdatamodeld */; };
 		80A6D4931A9F2DAA00591564 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80A6D4911A9F2DAA00591564 /* Main.storyboard */; };
-		80A6D4951A9F2DAA00591564 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80A6D4941A9F2DAA00591564 /* Images.xcassets */; };
 		80A6D4981A9F2DAA00591564 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80A6D4961A9F2DAA00591564 /* LaunchScreen.xib */; };
 		80A6D4A41A9F2DAA00591564 /* SampleRssTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A6D4A31A9F2DAA00591564 /* SampleRssTests.m */; };
 		80A6D4AF1A9F331300591564 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A6D4AE1A9F331300591564 /* TableViewController.m */; };
@@ -23,6 +22,7 @@
 		80A6D4C61A9F678100591564 /* RSSDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A6D4C51A9F678100591564 /* RSSDownloader.m */; };
 		80B93EC51AA0C8740062E8E8 /* UIWebImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80B93EC41AA0C8740062E8E8 /* UIWebImageView.m */; };
 		80E94ADC1AA33450003DDEF5 /* offline.png in Resources */ = {isa = PBXBuildFile; fileRef = 80E94ADB1AA33450003DDEF5 /* offline.png */; };
+		80E94ADE1AA359BD003DDEF5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80E94ADD1AA359BD003DDEF5 /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,7 +48,6 @@
 		80A6D4891A9F2DAA00591564 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		80A6D48C1A9F2DAA00591564 /* SampleRss.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SampleRss.xcdatamodel; sourceTree = "<group>"; };
 		80A6D4921A9F2DAA00591564 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		80A6D4941A9F2DAA00591564 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		80A6D4971A9F2DAA00591564 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		80A6D49D1A9F2DAA00591564 /* SampleRssTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SampleRssTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		80A6D4A21A9F2DAA00591564 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -64,6 +63,7 @@
 		80B93EC31AA0C8740062E8E8 /* UIWebImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIWebImageView.h; sourceTree = "<group>"; };
 		80B93EC41AA0C8740062E8E8 /* UIWebImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIWebImageView.m; sourceTree = "<group>"; };
 		80E94ADB1AA33450003DDEF5 /* offline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = offline.png; sourceTree = "<group>"; };
+		80E94ADD1AA359BD003DDEF5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,12 +106,12 @@
 		80A6D4831A9F2DAA00591564 /* SampleRss */ = {
 			isa = PBXGroup;
 			children = (
+				80A6D4881A9F2DAA00591564 /* AppDelegate.h */,
+				80A6D4891A9F2DAA00591564 /* AppDelegate.m */,
 				80A6D4BA1A9F3FC400591564 /* View */,
 				80A6D4B91A9F3FB400591564 /* Controller */,
 				80A6D4C71A9F678500591564 /* Model */,
-				80A6D4881A9F2DAA00591564 /* AppDelegate.h */,
-				80A6D4891A9F2DAA00591564 /* AppDelegate.m */,
-				80A6D4941A9F2DAA00591564 /* Images.xcassets */,
+				80E94ADD1AA359BD003DDEF5 /* Images.xcassets */,
 				80A6D4961A9F2DAA00591564 /* LaunchScreen.xib */,
 				80A6D48B1A9F2DAA00591564 /* SampleRss.xcdatamodeld */,
 				80A6D4841A9F2DAA00591564 /* Supporting Files */,
@@ -269,9 +269,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				80A6D4931A9F2DAA00591564 /* Main.storyboard in Resources */,
+				80E94ADE1AA359BD003DDEF5 /* Images.xcassets in Resources */,
 				80A09E541AA2135A00D48D7E /* GeosansLight.ttf in Resources */,
 				80A6D4981A9F2DAA00591564 /* LaunchScreen.xib in Resources */,
-				80A6D4951A9F2DAA00591564 /* Images.xcassets in Resources */,
 				80E94ADC1AA33450003DDEF5 /* offline.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -426,6 +426,7 @@
 				INFOPLIST_FILE = SampleRss/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -436,6 +437,7 @@
 				INFOPLIST_FILE = SampleRss/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

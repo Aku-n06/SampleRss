@@ -18,7 +18,7 @@ so provide the data called at startup and when the frefreshControl is used.
 Each cell show a title, a description of the article and a thumbnail; this last
 element is downloaded from a uiview subclass called UIVebImageView.
 Selecting a cell the DetailViewController will be called. */
-@interface TableViewController : UITableViewController {
+@interface TableViewController : UITableViewController <UINavigationControllerDelegate> {
     //Model that give the data for the table
     RSSAPI *rssApi;
     //Array containing all the feed informations
